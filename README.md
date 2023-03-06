@@ -40,6 +40,7 @@ This Project Creates a Demo copy of The AirBnB Website
 	
 In Interactive Mode the Interpreter Should Work as Shown Below
 
+```
 $ ./console.py
 (hbnb) help
 
@@ -51,10 +52,11 @@ EOF  help  quit
 (hbnb) 
 (hbnb) quit
 $
-
+```
 
 In Non-Interactive Mode it should look as Displayed Below:
 
+```
 
 $ echo "help" | ./console.py
 (hbnb)
@@ -75,7 +77,7 @@ Documented commands (type help <topic>):
 EOF  help  quit
 (hbnb) 
 $
-
+```
 THIS PROJECT COVERS THE FOLLOWING:
 cmd module,
 cmd module in depth,
