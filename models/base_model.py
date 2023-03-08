@@ -3,13 +3,17 @@
 
 import uuid
 from datetime import datetime
-
+import models
 
 class BaseModel:
     """Definition of the 'BaseModel' class"""
 
     def __init__(self, *args, **kwargs):
         """This is the instance constructor"""
+
+        self.id = str(uuid.uuid4())
+        self.created_at = datetime.now()
+        self.updated_at = datetime.now()
 
         if len(kwargs) != 0:
             for key, value in kwargs.items():
@@ -20,9 +24,8 @@ class BaseModel:
                 else:
                     self.__dict__[key] = value
         else:
-            self.id = str(uuid.uuid4())
-            self.created_at = datetime.now()
-            self.updated_at = datetime.now()
+            models.storage.new(self)
+
 
     def __str__(self):
         """This method returns the user defined information
@@ -36,6 +39,7 @@ class BaseModel:
         made and saves it to the updated_at attribute"""
 
         self.updated_at = datetime.now()
+        models.storage.save()
 
     def to_dict(self):
         """The to_dict() method adds the name of the instance
