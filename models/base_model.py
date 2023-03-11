@@ -5,6 +5,7 @@ import uuid
 from datetime import datetime
 import models
 
+
 class BaseModel:
     """Definition of the 'BaseModel' class"""
 
@@ -25,7 +26,6 @@ class BaseModel:
                     self.__dict__[key] = value
         else:
             models.storage.new(self)
-
 
     def __str__(self):
         """This method returns the user defined information
