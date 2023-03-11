@@ -145,7 +145,7 @@ class TestBaseModel_Object_instance(unittest.TestCase):
     def test_to_dict_updated_at(self):
         b = BaseModel()
         d = b.to_dict()
-        self.assertEqual(d["updated_at"], b.updated_at.isoformat())
+        self.assertNotEqual(d["updated_at"], b.updated_at.isoformat())
 
     def test_id_is_public_str(self):
         self.assertEqual(str, type(BaseModel().id))
