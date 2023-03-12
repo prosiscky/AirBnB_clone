@@ -83,9 +83,7 @@ class HBNBCommand(cmd.Cmd):
         return False
 
     def do_create(self, arg: str) -> None:
-        """Creates a new instance of BaseModel, saves it
-        (to the JSON file) and prints the id
-        """
+        """Creates a new instance"""
 
         tokens = tokenize(arg)
         if arg == "":
@@ -104,9 +102,7 @@ class HBNBCommand(cmd.Cmd):
             os.system('clear')
 
     def do_show(self, arg: str) -> None:
-        """ Prints the string representation of an instance
-        based on the class name and id
-        """
+        """Prints the string representation of an instance"""
 
         tokens = tokenize(arg)
         if arg == "":
@@ -123,9 +119,7 @@ class HBNBCommand(cmd.Cmd):
                 print(storage.all()[key])
 
     def do_destroy(self, arg: str) -> None:
-        """: Deletes an instance based on the class name and id
-        (save the change into the JSON file)
-        """
+        """Deletes an instance based on the class name and id"""
 
         tokens = tokenize(arg)
         if arg == "":
@@ -143,12 +137,7 @@ class HBNBCommand(cmd.Cmd):
                 storage.save()
 
     def do_all(self, arg: str) -> None:
-        """ Prints all string representation of all instances based or
-        not on the class name. Ex: $ all BaseModel or $ all.
-        The printed result must be a list of strings (like the example below)
-        If the class name doesn’t exist, print ** class doesn't exist **
-        (ex: $ all MyModel)
-        """
+        """Prints all string representation of all instances"""
 
         tokens = tokenize(arg)
         if arg == "":
@@ -161,7 +150,7 @@ class HBNBCommand(cmd.Cmd):
             print(temp)
 
     def do_update(self, arg: str) -> None:
-        """ Updates the class"""
+        """Updates the class"""
         tokens = tokenize(arg)
         object_json = storage.all()
         if arg == "":
