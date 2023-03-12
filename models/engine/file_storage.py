@@ -11,8 +11,9 @@ from models.review import Review
 
 
 class FileStorage:
-    """ A storage class that stores created object
-    Args:
+    """The FileStorage class that serializes instances to
+        a JSON file and deserializes JSON file to instances
+        Args:
             __file_path: Private class attribute
              string - path to the JSON file
              __objects: private class attribute
@@ -35,7 +36,6 @@ class FileStorage:
 
     def save(self):
         """ serializes __objects to the JSON file """
-
         path = FileStorage.__file_path
 
         new_obj = {k: FileStorage.__objects[k].to_dict(
@@ -45,7 +45,7 @@ class FileStorage:
             json.dump(new_obj, file)
 
     def reload(self):
-        """deserializes the JSON file to __objects"""
+        """Deserialize the JSON file __file_path to __objects, if it exists."""
 
         path = FileStorage.__file_path
 
