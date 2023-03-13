@@ -21,7 +21,7 @@ def tokenize(arg: str) -> list:
     Returns:
         list: list of strings
     """
-    token = re.split(r"[ .()]", arg)
+    token = re.split(r"[ .(),]", arg)
     return token
 
 
@@ -45,6 +45,8 @@ class HBNBCommand(cmd.Cmd):
         return True
 
     def default(self, arg):
+        """Default method"""
+
         func_dict = {
             "all": self.do_all,
             "show": self.do_show,
@@ -58,51 +60,29 @@ class HBNBCommand(cmd.Cmd):
             # checking for commands to call
             if key == tokens[1]:
                 # for if args is parentheses eg("something")
-                if tokens[2] != "":
-                    print(tokens)
+                if tokens[2] != "" and len(tokens) < 6:
+                    # print(tokens)
                     striped_arg = tokens[2].replace('"', '')
                     args = f"{tokens[0]} {striped_arg}"
                     return func_dict[tokens[1]](args)
-                elif len(tokens) == 6:
+                elif len(tokens) > 6:
                     # for update version 1
-                    print(tokens)
-                    striped1_arg = tokens[2].replace('"', '')
-                    striped2_arg = tokens[3].replace('"', '')
-                    striped3_arg = tokens[4].replace('"', '')
-                    args = f"{tokens[0]} {striped1_arg} {striped2_arg}" \
-                        "{striped3_arg}"
+                    # print(tokens)
+                    arg1 = tokens[2].replace('"', '')
+                    arg2 = tokens[4].replace('"', '')
+                    arg3 = tokens[6].replace('"', '')
+                    args = f"{tokens[0]} {arg1} {arg2} {arg3}"
+                    # print(args)
                     return func_dict[tokens[1]](args)
 
                 else:
-                    print(tokens)
+                    # print(tokens)
                     return func_dict[tokens[1]](tokens[0])
 
-        print(tokens)
+        # print(tokens)
 
         print("*** Unknown syntax: {}".format(arg))
         return False
-
-    def update_dict(self, classname, uid, s_dict):
-        """Helper method for update() with a dictionary."""
-        s = s_dict.replace("'", '"')
-        d = json.loads(s)
-        if not classname:
-            print("** class name missing **")
-        elif classname not in storage.classes():
-            print("** class doesn't exist **")
-        elif uid is None:
-            print("** instance id missing **")
-        else:
-            key = "{}.{}".format(classname, uid)
-            if key not in storage.all():
-                print("** no instance found **")
-            else:
-                attributes = storage.attributes()[classname]
-                for attribute, value in d.items():
-                    if attribute in attributes:
-                        value = attributes[attribute](value)
-                    setattr(storage.all()[key], attribute, value)
-                storage.all()[key].save()
 
     def do_create(self, arg: str) -> None:
         """Creates a new instance"""
@@ -124,7 +104,7 @@ class HBNBCommand(cmd.Cmd):
             os.system('clear')
 
     def do_show(self, arg: str) -> None:
-        """Prints the string representation of an instance"""
+        """prints the string representation of an instance"""
 
         tokens = tokenize(arg)
         if arg == "":
@@ -172,7 +152,7 @@ class HBNBCommand(cmd.Cmd):
             print(temp)
 
     def do_update(self, arg: str) -> None:
-        """Updates the class"""
+        """ Updates the class"""
         tokens = tokenize(arg)
         object_json = storage.all()
         if arg == "":
@@ -226,6 +206,8 @@ class HBNBCommand(cmd.Cmd):
         storage.save()
 
     def do_count(self, arg):
+        """counts"""
+
         tokens = tokenize(arg)
         # set counter
         count = 0

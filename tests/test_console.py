@@ -45,7 +45,7 @@ class TestHBNBCommand(unittest.TestCase):
         """Tests show"""
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("help show")
-            s = 'Prints the string representation of an instance\n'
+            s = 'prints the string representation of an instance\n'
             self.assertEqual(s, f.getvalue())
 
     def test_help_destroy(self):
@@ -60,6 +60,41 @@ class TestHBNBCommand(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("help all")
             s = 'Prints all string representation of all instances\n'
+            self.assertEqual(s, f.getvalue())
+
+    def test_help_update(self):
+        """Tests Update"""
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("help update")
+            s = ' Updates the class\n'
+            self.assertEqual(s, f.getvalue())
+
+    def test_help_count(self):
+        """Tests count"""
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("help count")
+            s = 'counts\n'
+            self.assertEqual(s, f.getvalue())
+
+    def test_help_EOF(self):
+        """End of line"""
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("help EOF")
+            s = 'Handles EOF\n'
+            self.assertEqual(s, f.getvalue())
+
+    def test_help_emptyline(self):
+        """Tests empty line"""
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("help emptyline")
+            s = '*** No help on emptyline\n'
+            self.assertEqual(s, f.getvalue())
+
+    def test_help_default(self):
+        """default"""
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("help default")
+            s = '*** No help on default\n'
             self.assertEqual(s, f.getvalue())
 
 
