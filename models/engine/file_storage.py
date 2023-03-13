@@ -24,7 +24,7 @@ class FileStorage:
     __objects = {}
 
     def all(self):
-        """ returns the dictionary __objects """
+        """returns the dictionary __objects"""
 
         return FileStorage.__objects
 
@@ -35,7 +35,7 @@ class FileStorage:
         FileStorage.__objects[key] = obj
 
     def save(self):
-        """ serializes __objects to the JSON file """
+        """serializes __objects to the JSON file """
         path = FileStorage.__file_path
 
         new_obj = {k: FileStorage.__objects[k].to_dict(
