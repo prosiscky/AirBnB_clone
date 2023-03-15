@@ -151,7 +151,7 @@ class HBNBCommand(cmd.Cmd):
                     if tokens[0] in k]
             print(temp)
 
-     def do_update(self, arg: str) -> None:
+    def do_update(self, arg: str) -> None:
         """ Updates the class"""
         tokens = tokenize(arg)
         object_json = storage.all()
@@ -204,7 +204,6 @@ class HBNBCommand(cmd.Cmd):
                     obj.__dict__[k] = v
 
         storage.save()
-
 
     def do_count(self, arg):
         """counts"""
