@@ -1,0 +1,1 @@
+This folder contains cpde solutions to the WEBSTATIC project
