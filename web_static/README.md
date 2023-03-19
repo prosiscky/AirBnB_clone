@@ -1,1 +1,1 @@
-This folder contains cpde solutions to the WEBSTATIC project
+This folder contains code solutions to the WEBSTATIC project
